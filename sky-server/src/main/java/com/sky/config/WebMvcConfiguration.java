@@ -43,15 +43,20 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      */
     @Bean
     public Docket docket() {
+        log.info("准备生成接口文档...");
+        //创建ApiInfo对象，用于设置接口文档的基本信息
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("苍穹外卖项目接口文档")
                 .version("2.0")
                 .description("苍穹外卖项目接口文档")
                 .build();
+        //配置swagger
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo)
                 .select()
+                //设置接口文档的扫描路径
                 .apis(RequestHandlerSelectors.basePackage("com.sky.controller"))
+                //设置接口文档的路径选择器
                 .paths(PathSelectors.any())
                 .build();
         return docket;
@@ -61,8 +66,12 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      * 设置静态资源映射
      * @param registry
      */
+
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        log.info("开始设置静态资源映射...");
+        // 添加对/doc.html的映射
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
+        // 添加对/webjars/**的映射
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 }

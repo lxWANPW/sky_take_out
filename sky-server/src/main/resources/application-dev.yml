@@ -5,4 +5,5 @@ sky:
     port: 3306
     database: sky_take_out
     username: root
-    password: root
+    password: '010416'
+    url: "jdbc:mysql://localhost:3306/sky_take_out?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai"
